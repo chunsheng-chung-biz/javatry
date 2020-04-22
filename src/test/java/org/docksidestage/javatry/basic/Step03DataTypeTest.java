@@ -45,16 +45,16 @@ public class Step03DataTypeTest extends PlainTestCase {
         Boolean dstore = true;
         BigDecimal amba = new BigDecimal("9.4");
 
-        piari = piari.plusDays(1);
-        land = piari.getYear();
-        bonvo = bonvo.plusMonths(1);
-        land = bonvo.getMonthValue();
-        land--;
+        piari = piari.plusDays(1); // 2001/09/05
+        land = piari.getYear(); // 2001
+        bonvo = bonvo.plusMonths(1); // 2001/10/04 12:34:56
+        land = bonvo.getMonthValue(); // 10
+        land--; // 9
         if (dstore) {
-            BigDecimal addedDecimal = amba.add(new BigDecimal(land));
-            sea = String.valueOf(addedDecimal);
+            BigDecimal addedDecimal = amba.add(new BigDecimal(land)); //9.4+9
+            sea = String.valueOf(addedDecimal); //18.4
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "18.4"
     }
 
     // ===================================================================================
