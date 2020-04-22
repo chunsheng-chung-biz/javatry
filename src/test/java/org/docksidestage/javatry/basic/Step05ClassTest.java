@@ -121,6 +121,11 @@ public class Step05ClassTest extends PlainTestCase {
      * Recycle duplicate logics between one-day and two-day by e.g. private method in class. (And confirm result of both before and after) <br>
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
      */
+    /**
+     * It's quite difficult to find the right "recycle level" for this work.
+     * I decided to make the ticket types enum, and the quantities and prices arrays,
+     * So everything can be done in the same method with different ticket type arguments.
+     */
     public void test_class_letsFix_refactor_recycle() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);

@@ -23,16 +23,14 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final int ONE_DAY_MAX_QUANTITY = 10;
-    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
-    private static final int TWO_DAY_MAX_QUANTITY = 10;
-    private static final int TWO_DAY_PRICE = 13200;
+    private enum TicketType {ONE_DAY, TWO_DAY};
+    private static final int[] MAX_QUANTITIES = {10, 10};
+    private static final int[] PRICES = {7400,13200}; // when 2019/06/15
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int oneDayQuantity = ONE_DAY_MAX_QUANTITY;
-    private int twoDayQuantity = TWO_DAY_MAX_QUANTITY;
+    private int[] quantities = MAX_QUANTITIES;
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -44,38 +42,39 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    public void buyOneDayPassport(int handedMoney) {
-        if (oneDayQuantity <= 0) {
-            throw new TicketSoldOutException("Sold out");
-        }
-
-        if (handedMoney < ONE_DAY_PRICE) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
-        }
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + ONE_DAY_PRICE; // Fix for q6
-        } else {
-            salesProceeds = ONE_DAY_PRICE; // Fix for q6
-        }
-        --oneDayQuantity; // This line is moved to the corrected place
+    public int buyOneDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
+        return perchaseAndReturnChange(handedMoney,TicketType.ONE_DAY);
     }
 
-    public int buyTwoDayPassport(int handedMoney) {
-        if (twoDayQuantity <= 0) {
+    public int buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
+        return perchaseAndReturnChange(handedMoney,TicketType.TWO_DAY);
+    }
+
+    /**
+     * Buys the specified ticket and return changes.
+     * @param handedMoney Handed money.
+     * @param ticketType: The Enum ticket type to buy.
+     * @return Change.
+     */
+    private int perchaseAndReturnChange(int handedMoney, TicketType ticketType) {
+        int ticketTypeId = ticketType.ordinal();
+        int price = PRICES[ticketTypeId];
+
+        if (quantities[ticketTypeId] <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
 
-        if (handedMoney < TWO_DAY_PRICE) {
+        if (handedMoney < price) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         if (salesProceeds != null) {
-            salesProceeds = salesProceeds + TWO_DAY_PRICE; // Fix for q6
+            salesProceeds = salesProceeds + price; // Fix for q6
         } else {
-            salesProceeds = TWO_DAY_PRICE; // Fix for q6
+            salesProceeds = price; // Fix for q6
         }
-        --twoDayQuantity;
 
-        return handedMoney - TWO_DAY_PRICE; // Change
+        --quantities[ticketTypeId];
+        return handedMoney - price;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
@@ -100,10 +99,10 @@ public class TicketBooth {
     //                                                                            Accessor
     //                                                                            ========
     public int getQuantity() {
-        return oneDayQuantity;
+        return quantities[TicketType.ONE_DAY.ordinal()];
     }
     public int getTwoDayQuantity() {
-        return twoDayQuantity;
+        return quantities[TicketType.TWO_DAY.ordinal()];
     }
 
     public Integer getSalesProceeds() {
