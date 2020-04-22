@@ -130,7 +130,7 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_method_argument_immutable_methodcall() {
         String sea = "harbor";
         int land = 415;
-        // This method does nothing to original sea as it's passed by value.
+        // This method does nothing to original sea as string is immutable.
         helpMethodArgumentImmutableMethodcall(sea, land);
         log(sea); // your answer? => harbor
     }
@@ -138,6 +138,8 @@ public class Step01VariableTest extends PlainTestCase {
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
         ++land;
         String landStr = String.valueOf(land); // is "416"
+        // This line does not affect content of sea and instead returns the result.
+        // However, no variable is assigned with that result there.
         sea.concat(landStr);
     }
 
@@ -149,11 +151,12 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor416
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
         ++land;
+        //This method adds the argument to the end of the string builder.
         sea.append(land);
     }
 
