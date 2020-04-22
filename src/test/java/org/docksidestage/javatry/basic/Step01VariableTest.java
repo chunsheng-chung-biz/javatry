@@ -130,8 +130,9 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_method_argument_immutable_methodcall() {
         String sea = "harbor";
         int land = 415;
+        // This method does nothing to original sea as it's passed by value.
         helpMethodArgumentImmutableMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
