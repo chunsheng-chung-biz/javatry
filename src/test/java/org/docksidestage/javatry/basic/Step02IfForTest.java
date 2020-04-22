@@ -194,6 +194,7 @@ public class Step02IfForTest extends PlainTestCase {
     // But seems not good to use exception handling...
     // Seems this one will work: https://www.baeldung.com/java-break-stream-foreach but it's Java 9
     // I can only use this dirty method to avoid error...
+    // NOTE Thanks. I think you can have a look to Hieu's answer, he made a quite a good one. winkichanwi
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
         String[] seas = {null, null};

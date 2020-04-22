@@ -155,11 +155,11 @@ public class Step04MethodTest extends PlainTestCase {
 
     public void test_method_making() {
         // comment out after making these methods
-//        String replaced = replaceCtoB(replaceAtoB("ABC"));
-//        String sea = addPrefix("broadway", replaced);
-//        if (isAvailableLogging()) {
-//            showSea(sea);
-//        }
+        String replaced = replaceCtoB(replaceAtoB("ABC"));
+        String sea = addPrefix("broadway", replaced);
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
         // Answer: "broadway:BBB"
     }
 
@@ -174,6 +174,7 @@ public class Step04MethodTest extends PlainTestCase {
 
     private String addPrefix(String prefix, String str) {
         return prefix + ":" + str;
+    // done Try renaming the parameters, and you can remove the slash in test_method_making if you finished. winkichanwi
     }
 
     private boolean isAvailableLogging() {
