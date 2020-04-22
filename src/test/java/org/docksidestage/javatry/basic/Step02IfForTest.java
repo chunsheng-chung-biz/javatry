@@ -100,7 +100,7 @@ public class Step02IfForTest extends PlainTestCase {
     //                                                                       =============
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_inti_basic() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
         String sea = null;
         for (int i = 0; i < stageList.size(); i++) {
             String stage = stageList.get(i);
@@ -108,7 +108,7 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "dockside"
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
