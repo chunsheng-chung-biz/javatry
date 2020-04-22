@@ -217,12 +217,24 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * Write an equivalent of python's expression:
+     * answer = [s+"1" for s in stage if "ga" in s else s+"0"]
+     * with forEach method.
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
         // write your code here
+        List<String> answer = new ArrayList<>();
+        prepareStageList().forEach(stage -> {
+            if (stage.contains("ga")) {
+                answer.add(stage+"1");
+            }
+            else {
+                answer.add(stage+"0");
+            }
+        });
+        log(answer); // [broadway0, dockside0, hangar1, magiclamp0]
     }
 
     // ===================================================================================
