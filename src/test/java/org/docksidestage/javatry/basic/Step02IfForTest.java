@@ -60,14 +60,15 @@ public class Step02IfForTest extends PlainTestCase {
         int sea = 904;
         if (sea > 904) {
             sea = 2001;
-        } else if (sea >= 904) {
+        } else if (sea >= 904) { // will get into this branch first
             sea = 7;
-        } else if (sea >= 903) {
+        } else if (sea >= 903) { // Although sea >= 903 is true,
+                                 // the program gets to the previous branch as it's in front
             sea = 8;
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
