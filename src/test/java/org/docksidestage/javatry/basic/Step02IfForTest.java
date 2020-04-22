@@ -155,7 +155,7 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = sb.toString();
         log(sea); // your answer? => "dockside"
     }
-    //TODO Need to check the detail of forEach method!
+    // Need to check the detail of forEach method!
 
     // ===================================================================================
     //                                                                           Challenge

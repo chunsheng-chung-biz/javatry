@@ -203,7 +203,7 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_writing() {
         // define variables here
         String sea = "mystic";
-        // TODO Type of land should be int, not Integer by subaru (2020/04/22)
+        // done Type of land should be int, not Integer by subaru (2020/04/22)
         // [hint] Instance variable described above is Step01VariableTest's one
         Integer land = null;
 

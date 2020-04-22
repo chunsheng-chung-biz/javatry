@@ -90,7 +90,7 @@ public class Step03DataTypeTest extends PlainTestCase {
          *    (The range is much larger than int)
          * 2. double to byte casting seems to preserve the actual value rather than truncating the bytes directly.
          *    (Unless there's an overflow/underflow)
-         *    //TODO Check type casting rules
+         *    Need to check type casting rules.
          */
     }
 
