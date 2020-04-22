@@ -42,12 +42,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    public int buyOneDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return perchaseAndReturnChange(handedMoney,TicketType.ONE_DAY);
+    public TicketBuyResult buyOneDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
+        return buyTicket(handedMoney,TicketType.ONE_DAY);
     }
 
-    public int buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return perchaseAndReturnChange(handedMoney,TicketType.TWO_DAY);
+    public TicketBuyResult buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
+        return buyTicket(handedMoney,TicketType.TWO_DAY);
     }
 
     /**
@@ -56,7 +56,7 @@ public class TicketBooth {
      * @param ticketType: The Enum ticket type to buy.
      * @return Change.
      */
-    private int perchaseAndReturnChange(int handedMoney, TicketType ticketType) {
+    private TicketBuyResult buyTicket(int handedMoney, TicketType ticketType) {
         int ticketTypeId = ticketType.ordinal();
         int price = PRICES[ticketTypeId];
 
@@ -73,8 +73,11 @@ public class TicketBooth {
             salesProceeds = price; // Fix for q6
         }
 
+        // Create buy result
+        TicketBuyResult result = new TicketBuyResult(price, handedMoney-price);
+
         --quantities[ticketTypeId];
-        return handedMoney - price;
+        return result;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
