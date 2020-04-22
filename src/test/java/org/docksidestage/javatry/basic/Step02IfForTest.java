@@ -113,12 +113,12 @@ public class Step02IfForTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_basic() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
         String sea = null;
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "magiclamp"
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
