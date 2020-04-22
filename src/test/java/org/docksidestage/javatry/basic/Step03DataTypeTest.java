@@ -66,15 +66,15 @@ public class Step03DataTypeTest extends PlainTestCase {
         short land = 32767; // max
         int piari = 2147483647; // max
         long bonvo = 9223372036854775807L; // max
-        float dstore = 2147483647.1f;
+        float dstore = 2147483647.1f; // overflow?
         double amba = 2.3d;
         char miraco = 'a';
-        boolean dohotel = miraco == 'a';
+        boolean dohotel = miraco == 'a'; // true
         if (dohotel && dstore >= piari) {
-            bonvo = sea;
-            land = (short) bonvo;
-            bonvo = piari;
-            sea = (byte) land;
+            bonvo = sea; //127
+            land = (short) bonvo; //127
+            bonvo = piari; //2147483647
+            sea = (byte) land; // 0x01111111
             if (amba == 2.3D) {
                 sea = (byte) amba;
             }
@@ -82,7 +82,16 @@ public class Step03DataTypeTest extends PlainTestCase {
         if (dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 127
+        log((byte)128.0d);
+        /**
+         * Lessons:
+         * 1. Float does not overflow when larger than 2147483647, just decreases the precision.
+         *    (The range is much larger than int)
+         * 2. double to byte casting seems to preserve the actual value rather than truncating the bytes directly.
+         *    (Unless there's an overflow/underflow)
+         *    //TODO Check type casting rules
+         */
     }
 
     // ===================================================================================
