@@ -72,11 +72,11 @@ public class Step04MethodTest extends PlainTestCase {
         St4MutableStage mutable = new St4MutableStage();
         int sea = 904;
         boolean land = false;
-        helloMutable(sea - 4, land, mutable);
+        helloMutable(sea - 4, land, mutable); // set not changed, land still false, mutable -> "mystic"
         if (!land) {
             sea = sea + mutable.getStageName().length();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 910
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
