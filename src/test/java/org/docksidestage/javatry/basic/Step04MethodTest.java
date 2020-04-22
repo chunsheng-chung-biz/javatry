@@ -172,6 +172,7 @@ public class Step04MethodTest extends PlainTestCase {
         return str.replace("C", "B");
     }
 
+    // TODO Try renaming the parameters, and you can remove the slash in test_method_making if you finished. winkichanwi
     private String addPrefix(String a, String b) {
         return a + ":" + b;
     }
