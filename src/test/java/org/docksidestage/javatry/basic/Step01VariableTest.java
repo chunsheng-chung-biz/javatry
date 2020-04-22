@@ -201,8 +201,11 @@ public class Step01VariableTest extends PlainTestCase {
         // define variables here
         String sea = "mystic";
         Integer land = null;
-        int piari;
-        log(sea, land, piari); // Result is an error: variable piari might not have been initialized
+        //Commented out these lines to avoid error in later test.
+//        int piari;
+//        log(sea, land, piari); // Result is an error: variable piari might not have been initialized
+
+        // Need to remember that everything should be initilized!
     }
 
     // ===================================================================================
@@ -214,11 +217,21 @@ public class Step01VariableTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * What's the content of shibuya and shibuilder?
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_variable_yourExercise() {
         // write your code here
+        String shibuya = "shibuya";
+        StringBuilder shibuilder = new StringBuilder(shibuya + "crosstower");
+        yourExerciseFunction(shibuya, shibuilder);
+        log(shibuya, shibuilder); //Answer -> shibuya, shibuyacrosstowershibuyacrosstower
+    }
+
+    public void yourExerciseFunction(String shibuya, StringBuilder shibuilder) {
+        shibuya = shibuya + "crosstower";
+        shibuilder.append(shibuya);
+
     }
 }
