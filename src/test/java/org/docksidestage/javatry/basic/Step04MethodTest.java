@@ -132,6 +132,8 @@ public class Step04MethodTest extends PlainTestCase {
     //                                                                           Challenge
     //                                                                           =========
     // write instance variables here
+    private boolean availableLogging = true;
+
     /**
      * Make private methods as followings, and comment out caller program in test method:
      * <pre>
@@ -150,14 +152,35 @@ public class Step04MethodTest extends PlainTestCase {
      * o showSea(): 一つのString引数、戻り値なし、引数をlog()で表示する
      * </pre>
      */
+
     public void test_method_making() {
         // comment out after making these methods
-        //String replaced = replaceCtoB(replaceAtoB("ABC"));
-        //String sea = addPrefix("broadway", replaced);
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+//        String replaced = replaceCtoB(replaceAtoB("ABC"));
+//        String sea = addPrefix("broadway", replaced);
+//        if (isAvailableLogging()) {
+//            showSea(sea);
+//        }
+        // Answer: "broadway:BBB"
     }
 
     // write methods here
+    private String replaceAtoB(String str) {
+        return str.replace("A", "B");
+    }
+
+    private String replaceCtoB(String str) {
+        return str.replace("C", "B");
+    }
+
+    private String addPrefix(String a, String b) {
+        return a + ":" + b;
+    }
+
+    private boolean isAvailableLogging() {
+        return availableLogging;
+    }
+
+    private void showSea(String sea) {
+        log(sea);
+    }
 }
