@@ -139,19 +139,22 @@ public class Step02IfForTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
         StringBuilder sb = new StringBuilder();
         stageList.forEach(stage -> {
+            // Not sure about forEach, I assume that "stage" is the name of each item
+            // And -> {...} is a assigned function to execute with each item (stage in this case)?
             if (sb.length() > 0) {
                 return;
             }
-            if (stage.contains("i")) {
+            if (stage.contains("i")) { //"dockside"
                 sb.append(stage);
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "dockside"
     }
+    //TODO Need to check the detail of forEach method!
 
     // ===================================================================================
     //                                                                           Challenge
