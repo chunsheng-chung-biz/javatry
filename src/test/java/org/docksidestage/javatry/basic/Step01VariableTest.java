@@ -199,6 +199,10 @@ public class Step01VariableTest extends PlainTestCase {
      */
     public void test_variable_writing() {
         // define variables here
+        String sea = "mystic";
+        Integer land = null;
+        int piari;
+        log(sea, land, piari); // Result is an error: variable piari might not have been initialized
     }
 
     // ===================================================================================
