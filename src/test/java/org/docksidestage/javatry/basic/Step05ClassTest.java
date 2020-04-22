@@ -60,8 +60,9 @@ public class Step05ClassTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_wrongQuantity() {
         Integer sea = doTest_class_ticket_wrongQuantity();
-        log(sea); // your answer? => 9
-        //The quantity of the booth is still subtracted!
+        log(sea); // your answer? => 10
+        // The quantity of the booth is still subtracted!
+        // After q5 (test_class_letsFix_ticketQuantityReduction), the answer is 10 now
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
@@ -85,7 +86,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_ticketQuantityReduction() {
         Integer sea = doTest_class_ticket_wrongQuantity();
-        log(sea); // should be max quantity, visual check here
+        log(sea); // should be max quantity, done
     }
 
     /**
