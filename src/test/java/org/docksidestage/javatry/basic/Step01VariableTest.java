@@ -111,13 +111,13 @@ public class Step01VariableTest extends PlainTestCase {
         instanceMagiclamp = "magician";
         helpInstanceVariableViaMethod(instanceMagiclamp);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => bigband|1|null|magician
     }
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
-        instanceBroadway = "bigband";
-        ++instanceDockside;
-        instanceMagiclamp = "burn";
+        instanceBroadway = "bigband"; //Finds the variable in outer scope
+        ++instanceDockside; // Finds the variable in outer scope
+        instanceMagiclamp = "burn"; // I think this line only modifies the local variable
     }
 
     // ===================================================================================
