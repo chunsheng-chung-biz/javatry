@@ -123,18 +123,18 @@ public class Step02IfForTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_continueBreak() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
         String sea = null;
         for (String stage : stageList) {
-            if (stage.startsWith("br")) {
+            if (stage.startsWith("br")) { // "broadway" is skipped
                 continue;
             }
             sea = stage;
-            if (stage.contains("ga")) {
+            if (stage.contains("ga")) { // "hanger" breaks the loop
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "hangar"
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
