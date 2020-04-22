@@ -48,6 +48,7 @@ public class Step05ClassTest extends PlainTestCase {
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // your answer? => 10000
+        // After q6, the answer is 7400 now
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -97,7 +98,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
-        log(sea); // should be same as one-day price, visual check here
+        log(sea); // should be same as one-day price, done
     }
 
     /**

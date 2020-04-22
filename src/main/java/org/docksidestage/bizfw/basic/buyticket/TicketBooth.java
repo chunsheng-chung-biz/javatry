@@ -50,9 +50,9 @@ public class TicketBooth {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
         if (salesProceeds != null) {
-            salesProceeds = salesProceeds + handedMoney;
+            salesProceeds = salesProceeds + ONE_DAY_PRICE; // Fix for q6
         } else {
-            salesProceeds = handedMoney;
+            salesProceeds = ONE_DAY_PRICE; // Fix for q6
         }
         --quantity; // This line is moved to the corrected place
     }
