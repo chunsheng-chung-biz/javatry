@@ -172,8 +172,8 @@ public class Step04MethodTest extends PlainTestCase {
         return str.replace("C", "B");
     }
 
-    private String addPrefix(String a, String b) {
-        return a + ":" + b;
+    private String addPrefix(String prefix, String str) {
+        return prefix + ":" + str;
     }
 
     private boolean isAvailableLogging() {
