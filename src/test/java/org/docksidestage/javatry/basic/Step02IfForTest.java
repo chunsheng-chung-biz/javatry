@@ -165,7 +165,21 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stage = prepareStageList();
+        List<String> answer = new ArrayList<String>();
+        for (String s: stage) {
+            if (s.contains("a")) {
+                answer.add(s);
+            }
+        }
+        for (String s: answer) {
+            log(s);
+        }
     }
+    /*
+    I always want to write python syntax..... (ex. answer = [s for s in stage if 'a' in s])
+    Also forgot to declare type,add parenthesis etc... XD
+     */
 
     // ===================================================================================
     //                                                                           Good Luck
