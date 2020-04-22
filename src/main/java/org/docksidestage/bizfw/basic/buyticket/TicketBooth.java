@@ -23,9 +23,9 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private enum TicketType {ONE_DAY, TWO_DAY};
+
     private static final int[] MAX_QUANTITIES = {10, 10};
-    private static final int[] PRICES = {7400,13200}; // when 2019/06/15
+    protected static final int[] PRICES = {7400,13200}; // when 2019/06/15
 
     // ===================================================================================
     //                                                                           Attribute
@@ -43,11 +43,11 @@ public class TicketBooth {
     //                                                                          Buy Ticket
     //                                                                          ==========
     public TicketBuyResult buyOneDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return buyTicket(handedMoney,TicketType.ONE_DAY);
+        return buyTicket(handedMoney,Ticket.TicketType.ONE_DAY);
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return buyTicket(handedMoney,TicketType.TWO_DAY);
+        return buyTicket(handedMoney,Ticket.TicketType.TWO_DAY);
     }
 
     /**
@@ -56,7 +56,7 @@ public class TicketBooth {
      * @param ticketType: The Enum ticket type to buy.
      * @return Change.
      */
-    private TicketBuyResult buyTicket(int handedMoney, TicketType ticketType) {
+    private TicketBuyResult buyTicket(int handedMoney, Ticket.TicketType ticketType) {
         int ticketTypeId = ticketType.ordinal();
         int price = PRICES[ticketTypeId];
 
@@ -74,7 +74,7 @@ public class TicketBooth {
         }
 
         // Create buy result
-        TicketBuyResult result = new TicketBuyResult(price, handedMoney-price);
+        TicketBuyResult result = new TicketBuyResult(ticketType, price, handedMoney-price);
 
         --quantities[ticketTypeId];
         return result;
@@ -102,10 +102,10 @@ public class TicketBooth {
     //                                                                            Accessor
     //                                                                            ========
     public int getQuantity() {
-        return quantities[TicketType.ONE_DAY.ordinal()];
+        return quantities[Ticket.TicketType.ONE_DAY.ordinal()];
     }
     public int getTwoDayQuantity() {
-        return quantities[TicketType.TWO_DAY.ordinal()];
+        return quantities[Ticket.TicketType.TWO_DAY.ordinal()];
     }
 
     public Integer getSalesProceeds() {

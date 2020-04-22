@@ -4,8 +4,8 @@ public class TicketBuyResult {
     private Ticket ticket;
     private int change;
 
-    public TicketBuyResult(int displayPrice, int change) {
-        this.ticket = new Ticket(displayPrice);
+    public TicketBuyResult(Ticket.TicketType ticketType, int displayPrice, int change) {
+        this.ticket = new Ticket(ticketType, displayPrice);
         this.change = change;
     }
 
