@@ -47,12 +47,12 @@ public class Step02IfForTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_else_basic() {
         int sea = 904;
-        if (sea > 904) {
+        if (sea > 904) { // sea == 7
             sea = 2001;
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
