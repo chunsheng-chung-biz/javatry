@@ -17,6 +17,7 @@ package org.docksidestage.javatry.basic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import org.docksidestage.unit.PlainTestCase;
 
@@ -176,7 +177,7 @@ public class Step02IfForTest extends PlainTestCase {
             log(s);
         }
     }
-    /*
+    /**
     I always want to write python syntax..... (ex. answer = [s for s in stage if 'a' in s])
     Also forgot to declare type,add parenthesis etc... XD
      */
@@ -188,19 +189,26 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
+    // Is it possible to "break" in forEach?
+    // I checked this StackOverflow　https://stackoverflow.com/questions/23308193/break-or-return-from-java-8-stream-foreach
+    // But seems not good to use exception handling...
+    // Seems this one will work: https://www.baeldung.com/java-break-stream-foreach but it's Java 9
+    // I can only use this dirty method to avoid error...
     public void test_iffor_refactor_foreach_to_forEach() {
-        List<String> stageList = prepareStageList();
-        String sea = null;
-        for (String stage : stageList) {
-            if (stage.startsWith("br")) {
-                continue;
-            }
-            sea = stage;
-            if (stage.contains("ga")) {
-                break;
-            }
-        }
-        log(sea); // should be same as before-fix
+        List<String> stageList = prepareStageList(); // ["broadway", "dockside", "hangar", "magiclamp"]
+        String[] seas = {null, null};
+        int[] index = {0};
+        stageList.forEach(stage -> {
+                    if (stage.startsWith("br")) {
+                        return;
+                    }
+                    seas[index[0]] = stage;
+                    if (stage.contains("ga")) {
+                        index[0] = 1;
+                    }
+        });
+        String sea = seas[0];
+        log(sea); // should be same as before-fix: hangar
     }
 
     /**
