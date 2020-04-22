@@ -200,10 +200,12 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_writing() {
         // define variables here
         String sea = "mystic";
+        // TODO Type of land should be int, not Integer by subaru (2020/04/22)
+        // [hint] Instance variable described above is Step01VariableTest's one
         Integer land = null;
         //Commented out these lines to avoid error in later test.
-//        int piari;
-//        log(sea, land, piari); // Result is an error: variable piari might not have been initialized
+        //        int piari;
+        //        log(sea, land, piari); // Result is an error: variable piari might not have been initialized
 
         // Need to remember that everything should be initilized!
     }
