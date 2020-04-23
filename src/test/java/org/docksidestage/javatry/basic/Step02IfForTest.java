@@ -21,6 +21,8 @@ import java.util.Stack;
 
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO chung unused の import 宣言を削除しましょう。警告が出ていると思うので注意しましょう by jflute (2020/04/23)
+// TODO chung JavaDoc の author お願いしますー by jflute (2020/04/23)
 /**
  * The test of if-for. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>

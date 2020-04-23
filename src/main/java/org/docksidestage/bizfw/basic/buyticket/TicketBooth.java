@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO chung add your author to javadoc please by jflute (2020/04/23)
 /**
  * @author jflute
  */
@@ -23,7 +24,8 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-
+    // TODO chung Arrays are not immutable so it doesn't match to fixed values definition by jflute (2020/04/23)
+    // TODO chung While, how about managing them in TicketType? by jflute (2020/04/23)
     private static final int[] MAX_QUANTITIES = {10, 10};
     protected static final int[] PRICES = {7400,13200}; // when 2019/06/15
 
@@ -50,6 +52,8 @@ public class TicketBooth {
         return buyTicket(handedMoney,Ticket.TicketType.TWO_DAY);
     }
 
+    // TODO chung "Javadoc: Invalid param tag name" from IDE warning, @param does not need ":" by jflute (2020/04/23)
+    // TODO chung Already "@return" is not only "change" (change method, change comment) by jflute (2020/04/23)
     /**
      * Buys the specified ticket and return changes.
      * @param handedMoney Handed money.
