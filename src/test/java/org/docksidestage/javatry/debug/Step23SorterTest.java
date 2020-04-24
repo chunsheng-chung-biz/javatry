@@ -53,8 +53,8 @@ public class Step23SorterTest extends PlainTestCase {
         // arrange
         Language language = new LanguagePool().getLanguage("Japanese");
         List<Word> expected =
-                Arrays.asList(new Word(language, "昴"), new Word(language, "柿"), new Word(language, "私"), new Word(language, "荼"));
-
+                Arrays.asList(new Word(language, "昂"), new Word(language, "柿"), new Word(language, "私"), new Word(language, "荼"));
+                // The test case is not the same with the former test... I dicided to change the word in this test.
         // act
         List<Word> result = new WordAssort().sort();
 

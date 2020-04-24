@@ -17,7 +17,8 @@ public class WordAssort extends WordSorter {
 
     @Override
     public List<Word> sort() {
-        List<Sorter<Word>> sorters = Arrays.asList(new BubbleSorter(words), new SelectionSorter(words), new QuickSorter());
+        List<Sorter<Word>> sorters = Arrays.asList(new BubbleSorter(words), new SelectionSorter(words), new QuickSorter(words));
+        // Quicksorter missing argument
         int i = new Random().nextInt(sorters.size());
         return sorters.get(i).sort();
     }
