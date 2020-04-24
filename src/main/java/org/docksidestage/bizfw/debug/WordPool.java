@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @author zaya
+ * @author chunsheng.chung
  */
 public class WordPool {
     private final Map<Long, Word> wordMap;
@@ -64,14 +65,8 @@ public class WordPool {
     }
 
     public String replace(Long id, String word1, String word2) {
-        // String is immutable and is not modified by replace() method
-        // Need to assign the replaced string to the entry
-//        return wordMap.get(id).getWord().replace(word1, word2);
-        Word oldWord = wordMap.get(id);
-        wordMap.replace(id, new Word(oldWord.getLanguage(), oldWord.getWord().replace(word1, word2)));
-        return wordMap.get(id).getWord();
+        return wordMap.get(id).getWord().replace(word1, word2);
     }
-
 
     public void delete(Long id) {
         wordMap.remove(id);

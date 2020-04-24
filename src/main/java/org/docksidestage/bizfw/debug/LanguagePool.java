@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author zaya
+ * @author chunsheng.chung
  */
 public class LanguagePool {
 

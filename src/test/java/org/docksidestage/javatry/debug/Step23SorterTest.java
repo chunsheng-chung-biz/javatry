@@ -16,6 +16,7 @@ import org.junit.Assert;
  * Debug, fix the bug, make it green and save the world!
  * (テストの一部がバグ原因で落ちています。デバグして、バグを直して、テストを通るようにしてください。)
  * @author zaya
+ * @author chunsheng.chung
  */
 public class Step23SorterTest extends PlainTestCase {
 
@@ -54,7 +55,7 @@ public class Step23SorterTest extends PlainTestCase {
         Language language = new LanguagePool().getLanguage("Japanese");
         List<Word> expected =
                 Arrays.asList(new Word(language, "昂"), new Word(language, "柿"), new Word(language, "私"), new Word(language, "荼"));
-                // The test case is not the same with the former test... I dicided to change the word in this test.
+                // Word inconsistent between tests, decide to change here...
         // act
         List<Word> result = new WordAssort().sort();
 

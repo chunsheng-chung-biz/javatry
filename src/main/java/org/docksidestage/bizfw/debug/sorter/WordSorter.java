@@ -9,7 +9,6 @@ import org.docksidestage.bizfw.debug.WordPool;
 
 /**
  * @author zaya
- * @authro chunsheng.chung
  */
 public class WordSorter implements Sorter<Word> {
     public List<Word> words;
