@@ -6,6 +6,7 @@ import org.docksidestage.bizfw.debug.Word;
 
 /**
  * @author zaya
+ * @author chunsheng.chung
  */
 public class SelectionSorter implements Sorter<Word> {
     private List<Word> words;
@@ -28,7 +29,7 @@ public class SelectionSorter implements Sorter<Word> {
         for (int i = 0; i < n - 1; i++) {
             int m = i;
             for (int j = i + 1; j < n; j++) {
-                if (wordList.get(j).getWord().compareTo(wordList.get(i).getWord()) < 0) {
+                if (wordList.get(j).getWord().compareTo(wordList.get(m).getWord()) < 0) { // Not comparing to i but m
                     m = j;
                 }
             }
