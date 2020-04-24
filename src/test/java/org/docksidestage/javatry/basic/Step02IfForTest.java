@@ -17,18 +17,17 @@ package org.docksidestage.javatry.basic;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO chung unused の import 宣言を削除しましょう。警告が出ていると思うので注意しましょう by jflute (2020/04/23)
-// TODO chung JavaDoc の author お願いしますー by jflute (2020/04/23)
+// done chung unused の import 宣言を削除しましょう。警告が出ていると思うので注意しましょう by jflute (2020/04/23)
+// done chung JavaDoc の author お願いしますー by jflute (2020/04/23)
 /**
  * The test of if-for. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author chun-sheng.chung
  */
 public class Step02IfForTest extends PlainTestCase {
 

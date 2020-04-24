@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * ＠author chunsheng.chung
  */
 public class Ticket {
 
@@ -26,7 +27,6 @@ public class Ticket {
     //                                                                           =========
     private final int displayPrice;
     private boolean alreadyIn;
-    protected enum TicketType {ONE_DAY, TWO_DAY};
     private TicketType ticketType;
 
     // ===================================================================================

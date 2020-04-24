@@ -15,9 +15,10 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO chung add your author to javadoc please by jflute (2020/04/23)
+// done chung add your author to javadoc please by jflute (2020/04/23)
 /**
  * @author jflute
+ * @author chunsheng.chung
  */
 public class TicketBooth {
 
@@ -52,13 +53,13 @@ public class TicketBooth {
         return buyTicket(handedMoney,Ticket.TicketType.TWO_DAY);
     }
 
-    // TODO chung "Javadoc: Invalid param tag name" from IDE warning, @param does not need ":" by jflute (2020/04/23)
-    // TODO chung Already "@return" is not only "change" (change method, change comment) by jflute (2020/04/23)
+    // done chung "Javadoc: Invalid param tag name" from IDE warning, @param does not need ":" by jflute (2020/04/23)
+    // done Already "@return" is not only "change" (change method, change comment) by jflute (2020/04/23)
     /**
      * Buys the specified ticket and return changes.
      * @param handedMoney Handed money.
-     * @param ticketType: The Enum ticket type to buy.
-     * @return Change.
+     * @param ticketType The Enum ticket type to buy.
+     * @return Returns the amount of change in int type.
      */
     private TicketBuyResult buyTicket(int handedMoney, Ticket.TicketType ticketType) {
         int ticketTypeId = ticketType.ordinal();
