@@ -45,16 +45,16 @@ public class Step03DataTypeTest extends PlainTestCase {
         Boolean dstore = true;
         BigDecimal amba = new BigDecimal("9.4");
 
-        piari = piari.plusDays(1);
-        land = piari.getYear();
-        bonvo = bonvo.plusMonths(1);
-        land = bonvo.getMonthValue();
-        land--;
+        piari = piari.plusDays(1); // 2001/09/05
+        land = piari.getYear(); // 2001
+        bonvo = bonvo.plusMonths(1); // 2001/10/04 12:34:56
+        land = bonvo.getMonthValue(); // 10
+        land--; // 9
         if (dstore) {
-            BigDecimal addedDecimal = amba.add(new BigDecimal(land));
-            sea = String.valueOf(addedDecimal);
+            BigDecimal addedDecimal = amba.add(new BigDecimal(land)); //9.4+9
+            sea = String.valueOf(addedDecimal); //18.4
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "18.4"
     }
 
     // ===================================================================================
@@ -66,15 +66,15 @@ public class Step03DataTypeTest extends PlainTestCase {
         short land = 32767; // max
         int piari = 2147483647; // max
         long bonvo = 9223372036854775807L; // max
-        float dstore = 2147483647.1f;
+        float dstore = 2147483647.1f; // overflow?
         double amba = 2.3d;
         char miraco = 'a';
-        boolean dohotel = miraco == 'a';
+        boolean dohotel = miraco == 'a'; // true
         if (dohotel && dstore >= piari) {
-            bonvo = sea;
-            land = (short) bonvo;
-            bonvo = piari;
-            sea = (byte) land;
+            bonvo = sea; //127
+            land = (short) bonvo; //127
+            bonvo = piari; //2147483647
+            sea = (byte) land; // 0x01111111
             if (amba == 2.3D) {
                 sea = (byte) amba;
             }
@@ -82,7 +82,16 @@ public class Step03DataTypeTest extends PlainTestCase {
         if (dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 127
+        log((byte)128.0d);
+        /**
+         * Lessons:
+         * 1. Float does not overflow when larger than 2147483647, just decreases the precision.
+         *    (The range is much larger than int)
+         * 2. double to byte casting seems to preserve the actual value rather than truncating the bytes directly.
+         *    (Unless there's an overflow/underflow)
+         *    Need to check type casting rules.
+         */
     }
 
     // ===================================================================================
@@ -92,7 +101,7 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => "hangar"
     }
 
     private static class St3ImmutableStage {
