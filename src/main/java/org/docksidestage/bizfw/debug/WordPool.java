@@ -2,6 +2,7 @@ package org.docksidestage.bizfw.debug;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author zaya
@@ -15,7 +16,7 @@ public class WordPool {
         wordMap.put(1L, new Word(getJapanese(languagePool), "私"));
         wordMap.put(2L, new Word(getJapanese(languagePool), "柿"));
         wordMap.put(3L, new Word(getJapanese(languagePool), "荼"));
-        wordMap.put(4L, new Word(getJapanese(languagePool), "昴"));
+        wordMap.put(4L, new Word(getJapanese(languagePool), "昂")); // Word corrected based on test test_findId
     }
 
     public Map.Entry<Long, Word> create(Language language, String word) {
