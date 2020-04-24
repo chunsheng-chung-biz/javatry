@@ -8,6 +8,7 @@ import org.docksidestage.bizfw.debug.WordPool;
 
 /**
  * @author zaya
+ * @author chunsheng.chung
  */
 public class IteratorSearcher implements Searcher {
     public List<Word> words;
