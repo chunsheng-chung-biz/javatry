@@ -19,11 +19,7 @@ import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.objanimal.Animal;
-import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
-import org.docksidestage.bizfw.basic.objanimal.Cat;
-import org.docksidestage.bizfw.basic.objanimal.Dog;
-import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.*;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
@@ -324,6 +320,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
         // your confirmation code here
+        Sloth sloth = new Sloth();
+        log(sloth instanceof Animal); // true
+        BarkedSound sound = sloth.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // "aaah"
+        int land = sloth.getHitPoint();
+        log(land); // 7
+        sloth.sleep();
+        land = sloth.getHitPoint();
+        log(land); // 8
     }
 
     /**
