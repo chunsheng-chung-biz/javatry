@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.basic;
 
+// TODO [chung] 不要な import 文は消しましょう by subaru (2020/05/20)
 import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
