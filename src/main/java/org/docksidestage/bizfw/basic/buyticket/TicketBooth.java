@@ -28,6 +28,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
+    // TODO chung せっかくTicketTypeをenumに切り出したら、pricesもTicketTypeにいればいいのではと思っています winkichanwi 20200520
     private static final List<Integer> PRICES = Collections.unmodifiableList(Arrays.asList(7400, 13200, 22400)); // when 2019/06/15
     protected enum TicketType {ONE_DAY, TWO_DAY, FOUR_DAY}
     // ===================================================================================
@@ -111,6 +112,7 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    // TODO chung ここの辺の処理は同じなので、共通点を考えて共通化してみてください winkichanwi 20200520
     public int getQuantity() {
         return quantities[TicketType.ONE_DAY.ordinal()];
     }
