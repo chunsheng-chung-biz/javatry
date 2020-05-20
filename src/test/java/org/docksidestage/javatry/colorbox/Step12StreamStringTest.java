@@ -54,14 +54,18 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
+        // TODO chung こちらの右辺にカーソルを合わせて option + enter を実行しましょう by subaru (2020/05/20)
+        // Replace ... が表示されるのでこちらを実行すると良いです。
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
 
+        // TODO chung ここで get メソッドを呼ぶと文字列がなかったときに落ちてしまいます。 by subaru (2020/05/20)
+        // orElse を使う、または Optional で変数化して、answer が存在するかどうかでログ出力を変えるのが良いです。
         String answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
-                .filter(content -> content.getClass()==String.class)
-                .map(object -> (String)object)
+                .filter(content -> content.getClass() == String.class)
+                .map(object -> (String) object)
                 .max(compareByLength)
                 .get();
         log(answer);
@@ -74,11 +78,12 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMaxMinDiff() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
+        // TODO こちらも get メソッドを見直しましょう。 by subaru (2020/05/20)
         Integer max = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
-                .filter(content -> content.getClass()==String.class)
+                .filter(content -> content.getClass() == String.class)
                 .map(object -> ((String) object).length())
                 .max(Comparator.comparing(Integer::valueOf))
                 .get();
@@ -86,11 +91,11 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
-                .filter(content -> content.getClass()==String.class)
+                .filter(content -> content.getClass() == String.class)
                 .map(object -> ((String) object).length())
                 .min(Comparator.comparing(Integer::valueOf))
                 .get();
-        log(max-min);
+        log(max - min);
     }
 
     // has small #adjustmemts from ClassicStringTest
