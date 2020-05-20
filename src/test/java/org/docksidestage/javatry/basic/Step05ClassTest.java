@@ -15,10 +15,8 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.*;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
-import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -204,6 +202,17 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_useInterface() {
         // your confirmation code here
+        Ticket oneDayTicket = new OneDayTicket(7400); // Check OneDayTicket is child of Ticket
+        assertEquals(oneDayTicket.isAlreadyIn(), false);
+        oneDayTicket.doInPark();
+        assertEquals(oneDayTicket.isAlreadyIn(), true);
+
+        Ticket twoDayTicket = new PluralDayTicket(2, 13200); // Check PluralDayTicket is child of Ticket
+        assertEquals(twoDayTicket.isAlreadyIn(), false);
+        twoDayTicket.doInPark();
+        assertEquals(twoDayTicket.isAlreadyIn(), false);
+        twoDayTicket.doInPark();
+        assertEquals(twoDayTicket.isAlreadyIn(), true);
     }
 
     /**

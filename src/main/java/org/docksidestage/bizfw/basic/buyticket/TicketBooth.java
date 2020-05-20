@@ -16,6 +16,9 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
 // done chung add your author to javadoc please by jflute (2020/04/23)
+
+import java.util.*;
+
 /**
  * @author jflute
  * @author chunsheng.chung
@@ -25,15 +28,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    // TODO chung Arrays are not immutable so it doesn't match to fixed values definition by jflute (2020/04/23)
-    // TODO chung While, how about managing them in TicketType? by jflute (2020/04/23)
-    private static final int[] MAX_QUANTITIES = {10, 10};
-    protected static final int[] PRICES = {7400,13200}; // when 2019/06/15
-
+    private static final List<Integer> PRICES = Collections.unmodifiableList(Arrays.asList(7400, 13200)); // when 2019/06/15
+    protected enum TicketType {ONE_DAY, TWO_DAY}
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int[] quantities = MAX_QUANTITIES;
+    private int[] quantities = {10,10};
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -46,11 +46,11 @@ public class TicketBooth {
     //                                                                          Buy Ticket
     //                                                                          ==========
     public TicketBuyResult buyOneDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return buyTicket(handedMoney,Ticket.TicketType.ONE_DAY);
+        return buyTicket(handedMoney,TicketType.ONE_DAY);
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
-        return buyTicket(handedMoney,Ticket.TicketType.TWO_DAY);
+        return buyTicket(handedMoney,TicketType.TWO_DAY);
     }
 
     // done chung "Javadoc: Invalid param tag name" from IDE warning, @param does not need ":" by jflute (2020/04/23)
@@ -61,9 +61,9 @@ public class TicketBooth {
      * @param ticketType The Enum ticket type to buy.
      * @return Returns the amount of change in int type.
      */
-    private TicketBuyResult buyTicket(int handedMoney, Ticket.TicketType ticketType) {
+    private TicketBuyResult buyTicket(int handedMoney, TicketType ticketType) {
         int ticketTypeId = ticketType.ordinal();
-        int price = PRICES[ticketTypeId];
+        int price = PRICES.get(ticketTypeId);
 
         if (quantities[ticketTypeId] <= 0) {
             throw new TicketSoldOutException("Sold out");
@@ -107,10 +107,10 @@ public class TicketBooth {
     //                                                                            Accessor
     //                                                                            ========
     public int getQuantity() {
-        return quantities[Ticket.TicketType.ONE_DAY.ordinal()];
+        return quantities[TicketType.ONE_DAY.ordinal()];
     }
     public int getTwoDayQuantity() {
-        return quantities[Ticket.TicketType.TWO_DAY.ordinal()];
+        return quantities[TicketType.TWO_DAY.ordinal()];
     }
 
     public Integer getSalesProceeds() {

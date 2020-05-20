@@ -19,70 +19,19 @@ package org.docksidestage.bizfw.basic.buyticket;
  * @author jflute
  * ＠author chunsheng.chung
  */
-public class Ticket {
-
-
-    // ===================================================================================
-    //                                                                           Attribute
-    //                                                                           =========
-    private final int displayPrice;
-    private boolean alreadyIn;
-    protected enum TicketType {ONE_DAY, TWO_DAY};
-    private TicketType ticketType;
-
-    // ===================================================================================
-    //                                                                         Constructor
-    //                                                                         ===========
-
-    public Ticket(int displayPrice) {
-        this.displayPrice = displayPrice;
-        // Auto detect type by price
-        // A quick fix, can cause performance problem if there are too many ticket types
-        // TODO Better solution should be using a map of price -> type, or remove this
-        //  constructor and regulate other code?
-        for (TicketType t: TicketType.values()) {
-            if (TicketBooth.PRICES[t.ordinal()] == displayPrice) {
-                this.ticketType = t;
-                break;
-            }
-        }
-        this.ticketType = ticketType;
-    }
-
-    public Ticket(TicketType ticketType, int displayPrice) {
-        this.ticketType = ticketType;
-        this.displayPrice = displayPrice;
-    }
+public interface Ticket {
 
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
-    public void doInPark() {
-        if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
-        alreadyIn = true;
-    }
+    void doInPark();
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    public int getDisplayPrice() {
-        return displayPrice;
-    }
+    int getDisplayPrice();
 
-    public boolean isAlreadyIn() {
-        return alreadyIn;
-    }
+    boolean isAlreadyIn();
 
-    public String getTicketType() {
-        switch (ticketType) {
-        case ONE_DAY:
-            return ("One Day Passport");
-        case TWO_DAY:
-            return ("Two Day Passport");
-        default:
-            return ("Unknown");
-        }
-    }
+    String getTicketType();
 }
