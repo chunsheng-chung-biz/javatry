@@ -27,6 +27,10 @@ import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySqlQueryBuilder;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSqlQueryBuilder;
 import org.docksidestage.javatry.basic.st6.dbms.St6DBQueryBuilder;
+import org.docksidestage.javatry.basic.st6.os.St6Mac;
+import org.docksidestage.javatry.basic.st6.os.St6OldWindows;
+import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
+import org.docksidestage.javatry.basic.st6.os.St6Windows;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -371,6 +375,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
         // your confirmation code here
+        St6OperationSystem mac = new St6Mac("chung");
+        St6OperationSystem windows = new St6Windows("chung");
+        St6OperationSystem oldWindows = new St6OldWindows("chung");
+
+        log(mac.buildUserResourcePath("music/"));
+        log(windows.buildUserResourcePath("music/"));
+        log(oldWindows.buildUserResourcePath("music/"));
     }
 
     // ===================================================================================
