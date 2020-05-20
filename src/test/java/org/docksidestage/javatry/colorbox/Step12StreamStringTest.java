@@ -17,6 +17,7 @@ package org.docksidestage.javatry.colorbox;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
@@ -54,20 +55,24 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // TODO chung こちらの右辺にカーソルを合わせて option + enter を実行しましょう by subaru (2020/05/20)
-        // Replace ... が表示されるのでこちらを実行すると良いです。
+        /*
+         done chung こちらの右辺にカーソルを合わせて option + enter を実行しましょう by subaru (2020/05/20)
+         Replace ... が表示されるのでこちらを実行すると良いです。
+        */
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
 
-        // TODO chung ここで get メソッドを呼ぶと文字列がなかったときに落ちてしまいます。 by subaru (2020/05/20)
-        // orElse を使う、または Optional で変数化して、answer が存在するかどうかでログ出力を変えるのが良いです。
-        String answer = colorBoxList.stream()
+        /*
+         done chung ここで get メソッドを呼ぶと文字列がなかったときに落ちてしまいます。 by subaru (2020/05/20)
+         orElse を使う、または Optional で変数化して、answer が存在するかどうかでログ出力を変えるのが良いです。
+        */
+        Optional<String> answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(object -> (String) object)
-                .max(compareByLength)
-                .get();
+                .max(compareByLength);
+
         log(answer);
     }
 
@@ -78,24 +83,22 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMaxMinDiff() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // TODO こちらも get メソッドを見直しましょう。 by subaru (2020/05/20)
-        Integer max = colorBoxList.stream()
+        // done こちらも get メソッドを見直しましょう。 by subaru (2020/05/20)
+        Optional<Integer> max = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(object -> ((String) object).length())
-                .max(Comparator.comparing(Integer::valueOf))
-                .get();
-        Integer min = colorBoxList.stream()
+                .max(Comparator.comparing(Integer::valueOf));
+        Optional<Integer> min = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(object -> ((String) object).length())
-                .min(Comparator.comparing(Integer::valueOf))
-                .get();
-        log(max - min);
+                .min(Comparator.comparing(Integer::valueOf));
+        log(max.orElse(0) - min.orElse(0));
     }
 
     // has small #adjustmemts from ClassicStringTest
@@ -109,7 +112,7 @@ public class Step12StreamStringTest extends PlainTestCase {
 
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
 
-        String answer = colorBoxList.stream()
+        Optional<String> answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
@@ -117,8 +120,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(object -> (String)object)
                 .sorted(compareByLength.reversed())
                 .skip(1)
-                .findFirst()
-                .get();
+                .findFirst();
         log(answer);
     }
 
@@ -128,14 +130,13 @@ public class Step12StreamStringTest extends PlainTestCase {
      */
     public void test_length_calculateLengthSum() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
-        Integer answer = colorBoxList.stream()
+        Optional<Integer> answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass()==String.class)
                 .map(object -> (Integer)((String) object).length())
-                .reduce(Integer::sum)
-                .get();
+                .reduce(Integer::sum);
         log(answer);
     }
 
@@ -147,10 +148,9 @@ public class Step12StreamStringTest extends PlainTestCase {
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        String answer = colorBoxList.stream()
+        Optional<String> answer = colorBoxList.stream()
                 .map(colorBox -> colorBox.getColor().getColorName())
-                .max(compareByLength)
-                .get();
+                .max(compareByLength);
         log(answer);
     }
 
@@ -162,6 +162,19 @@ public class Step12StreamStringTest extends PlainTestCase {
      * ("Water" で始まる文字列をしまっているカラーボックスの色は？)
      */
     public void test_startsWith_findFirstWord() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        Optional<String> answer = colorBoxList.stream()
+                .filter(
+                        colorBox -> colorBox.getSpaceList().stream()
+                                .map(boxSpace -> boxSpace.getContent())
+                                .filter(content -> content != null)
+                                .filter(content -> content.getClass() == String.class)
+                                .anyMatch(content -> ((String) content).startsWith("Water"))
+                )
+                .map(colorBox -> colorBox.getColor().getColorName())
+                .findAny();
+        log(answer);
     }
 
     /**
