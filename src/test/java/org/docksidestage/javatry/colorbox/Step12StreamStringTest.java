@@ -74,8 +74,6 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMaxMinDiff() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
-
         Integer max = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
