@@ -12,6 +12,9 @@ public class TicketBuyResult {
         case TWO_DAY:
             this.ticket = new PluralDayTicket(2, displayPrice);
             break;
+        case FOUR_DAY:
+            this.ticket = new PluralDayTicket(4, displayPrice);
+            break;
         default:
             throw new IllegalArgumentException("Unsupported ticket type");
         }

@@ -206,7 +206,6 @@ public class Step05ClassTest extends PlainTestCase {
         assertEquals(oneDayTicket.isAlreadyIn(), false);
         oneDayTicket.doInPark();
         assertEquals(oneDayTicket.isAlreadyIn(), true);
-
         Ticket twoDayTicket = new PluralDayTicket(2, 13200); // Check PluralDayTicket is child of Ticket
         assertEquals(twoDayTicket.isAlreadyIn(), false);
         twoDayTicket.doInPark();
@@ -221,6 +220,18 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        TicketBuyResult result = booth.buyFourDayPassport(25000);
+        Ticket fourDayTicket = result.getTicket();
+        assertEquals(fourDayTicket.isAlreadyIn(), false);
+        fourDayTicket.doInPark();
+        assertEquals(fourDayTicket.isAlreadyIn(), false);
+        fourDayTicket.doInPark();
+        assertEquals(fourDayTicket.isAlreadyIn(), false);
+        fourDayTicket.doInPark();
+        assertEquals(fourDayTicket.isAlreadyIn(), false);
+        fourDayTicket.doInPark();
+        assertEquals(fourDayTicket.isAlreadyIn(), true);
     }
 
     /**

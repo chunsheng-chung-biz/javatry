@@ -28,12 +28,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    private static final List<Integer> PRICES = Collections.unmodifiableList(Arrays.asList(7400, 13200)); // when 2019/06/15
-    protected enum TicketType {ONE_DAY, TWO_DAY}
+    private static final List<Integer> PRICES = Collections.unmodifiableList(Arrays.asList(7400, 13200, 22400)); // when 2019/06/15
+    protected enum TicketType {ONE_DAY, TWO_DAY, FOUR_DAY}
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int[] quantities = {10,10};
+    private int[] quantities = {10,10,10};
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -52,6 +52,11 @@ public class TicketBooth {
     public TicketBuyResult buyTwoDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
         return buyTicket(handedMoney,TicketType.TWO_DAY);
     }
+
+    public TicketBuyResult buyFourDayPassport(int handedMoney) { // A wrapper for perchaseAndReturnChange method now
+        return buyTicket(handedMoney,TicketType.FOUR_DAY);
+    }
+
 
     // done chung "Javadoc: Invalid param tag name" from IDE warning, @param does not need ":" by jflute (2020/04/23)
     // done Already "@return" is not only "change" (change method, change comment) by jflute (2020/04/23)
