@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -25,7 +26,7 @@ import org.docksidestage.unit.PlainTestCase;
  * The test of String with color-box, using Stream API you can. <br>
  * Show answer by log() for question of javadoc.
  * @author jflute
- * @author your_name_here
+ * @author chunsheng.chung
  */
 public class Step12StreamStringTest extends PlainTestCase {
 
@@ -43,7 +44,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(colorBox -> colorBox.getColor().getColorName())
                 .map(colorName -> colorName.length() + " (" + colorName + ")")
                 .orElse("*not found");
-        log(answer);
+        log(answer); // 5
     }
 
     /**
@@ -51,6 +52,19 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長い文字列は？)
      */
     public void test_length_findMax() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
+
+        String answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content != null)
+                .filter(content -> content.getClass()==String.class)
+                .map(object -> (String)object)
+                .max(compareByLength)
+                .get();
+        log(answer);
     }
 
     /**
