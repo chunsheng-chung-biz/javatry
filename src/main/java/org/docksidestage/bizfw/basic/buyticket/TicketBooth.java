@@ -117,6 +117,10 @@ public class TicketBooth {
     public int getTwoDayQuantity() {
         return quantities[TicketType.TWO_DAY.ordinal()];
     }
+    public int getFourDayQuantity() {
+        return quantities[TicketType.FOUR_DAY.ordinal()];
+    }
+
 
     public Integer getSalesProceeds() {
         return salesProceeds;
