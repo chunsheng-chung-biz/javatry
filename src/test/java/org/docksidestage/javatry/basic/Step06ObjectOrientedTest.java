@@ -123,6 +123,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * In this case, the objects TicketBooth and Ticket handle their corresponding functions (buy tickets
      * , entering park...) and attributes (ticket prices, amounts, if the ticket is used or not)...
      * So the user can just use these methods without having to know all the information.
+     * By defining objects we can also reduce risks of using wrong arguments as codes are maintained as
+     * several small blocks that handle individual parts, rather than a large block that contains every thing.
      */
     public void test_objectOriented_aboutObject_usingObject() {
         //
