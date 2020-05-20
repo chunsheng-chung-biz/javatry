@@ -28,9 +28,21 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    // TODO chung せっかくTicketTypeをenumに切り出したら、pricesもTicketTypeにいればいいのではと思っています winkichanwi 20200520
-    private static final List<Integer> PRICES = Collections.unmodifiableList(Arrays.asList(7400, 13200, 22400)); // when 2019/06/15
-    protected enum TicketType {ONE_DAY, TWO_DAY, FOUR_DAY}
+    // done chung せっかくTicketTypeをenumに切り出したら、pricesもTicketTypeにいればいいのではと思っています winkichanwi 20200520
+    protected enum TicketType {
+        ONE_DAY(7400),
+        TWO_DAY(13200),
+        FOUR_DAY(22400);
+
+        private final int price;
+
+        TicketType(int price) {
+            this.price = price;
+        }
+        public int price() {
+            return price;
+        }
+    }
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
@@ -69,7 +81,7 @@ public class TicketBooth {
      */
     private TicketBuyResult buyTicket(int handedMoney, TicketType ticketType) {
         int ticketTypeId = ticketType.ordinal();
-        int price = PRICES.get(ticketTypeId);
+        int price = ticketType.price;
 
         if (quantities[ticketTypeId] <= 0) {
             throw new TicketSoldOutException("Sold out");
