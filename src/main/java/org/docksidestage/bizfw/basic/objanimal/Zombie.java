@@ -18,6 +18,7 @@ package org.docksidestage.bizfw.basic.objanimal;
 /**
  * The object for zombie(ゾンビ).
  * @author jflute
+ * @author chunsheng.chung
  */
 public class Zombie extends Animal {
 
@@ -30,6 +31,7 @@ public class Zombie extends Animal {
     //                                                                         Constructor
     //                                                                         ===========
     public Zombie() {
+        barkingProcess = new ZombieBarkingProcess();
     }
 
     @Override
@@ -48,15 +50,6 @@ public class Zombie extends Animal {
         public int getBreatheInCount() {
             return breatheInCount;
         }
-    }
-
-    // ===================================================================================
-    //                                                                               Bark
-    //                                                                              ======
-    @Override
-    protected void breatheIn() {
-        super.breatheIn();
-        zombieDiary.countBreatheIn();
     }
 
     @Override
