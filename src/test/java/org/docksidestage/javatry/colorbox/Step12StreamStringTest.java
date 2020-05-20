@@ -100,6 +100,21 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる値 (文字列以外はtoString()) の中で、二番目に長い文字列は？ (Streamでのソートありで))
      */
     public void test_length_findSecondMax() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
+
+        String answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content != null)
+                .filter(content -> content.getClass()==String.class)
+                .map(object -> (String)object)
+                .sorted(compareByLength.reversed())
+                .skip(1)
+                .findFirst()
+                .get();
+        log(answer);
     }
 
     /**
