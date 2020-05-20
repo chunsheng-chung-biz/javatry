@@ -18,6 +18,7 @@ package org.docksidestage.javatry.basic;
 import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
@@ -114,6 +115,14 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     /**
      * Read (analyze) this code and compare with the previous test method, and think "what is object?". <br>
      * (このコードを読んで(分析して)、一つ前のテストメソッドと比べて、「オブジェクトとは何か？」を考えてみましょう)
+     * Objects are like "Objects" (things) in real world, where each object has its own attributes and ways to
+     * interact with the world (or other objects), but we don't necessarily need to understand what's inside
+     * in order to interact with an object.
+     * For example, we can use a TV remote controller by pressing the buttons and control the TV, but we
+     * don't need to understand how does each button work inside.
+     * In this case, the objects TicketBooth and Ticket handle their corresponding functions (buy tickets
+     * , entering park...) and attributes (ticket prices, amounts, if the ticket is used or not)...
+     * So the user can just use these methods without having to know all the information.
      */
     public void test_objectOriented_aboutObject_usingObject() {
         //
@@ -130,11 +139,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-        // #fixme you if step05 has been finished, you can use this code by jflute (2019/06/15)
+        // #done if step05 has been finished, you can use this code by jflute (2019/06/15)
         // _/_/_/_/_/_/_/_/_/_/
         //Ticket ticket = booth.buyOneDayPassport(10000);
-        booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
-        Ticket ticket = new OneDayTicket(7400); // also here
+        TicketBuyResult result = booth.buyOneDayPassport(10000);
+//        booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
+//        Ticket ticket = new OneDayTicket(7400); // also here
+        Ticket ticket = result.getTicket();
 
         // *buyOneDayPassport() has this process:
         //if (quantity <= 0) {

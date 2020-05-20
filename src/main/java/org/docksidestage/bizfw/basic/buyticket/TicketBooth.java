@@ -120,4 +120,8 @@ public class TicketBooth {
     public int getQuantity(TicketType ticketType) {
         return quantities[ticketType.ordinal()];
     }
+
+    public Integer getSalesProceeds() {
+        return salesProceeds;
+    }
 }
