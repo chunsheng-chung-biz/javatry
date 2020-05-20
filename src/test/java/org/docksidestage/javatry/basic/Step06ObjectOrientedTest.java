@@ -15,8 +15,7 @@
  */
 package org.docksidestage.javatry.basic;
 
-// TODO [chung] 不要な import 文は消しましょう by subaru (2020/05/20)
-import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
+// done [chung] 不要な import 文は消しましょう by subaru (2020/05/20)
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
@@ -25,9 +24,9 @@ import org.docksidestage.bizfw.basic.objanimal.climber.Climber;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
-import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
-import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
-import org.docksidestage.javatry.basic.st6.dbms.St6Sql;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySqlQueryBuilder;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSqlQueryBuilder;
+import org.docksidestage.javatry.basic.st6.dbms.St6DBQueryBuilder;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -358,10 +357,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
-        St6Sql mySql = new St6MySql();
+        St6DBQueryBuilder mySql = new St6MySqlQueryBuilder();
         log(mySql.buildPagingQuery(100, 3));
 
-        St6Sql postgreSql = new St6PostgreSql();
+        St6DBQueryBuilder postgreSql = new St6PostgreSqlQueryBuilder();
         log(postgreSql.buildPagingQuery(100, 3));
 
     }
