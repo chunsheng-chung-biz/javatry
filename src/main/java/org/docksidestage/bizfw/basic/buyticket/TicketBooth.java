@@ -112,19 +112,12 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    // TODO chung ここの辺の処理は同じなので、共通点を考えて共通化してみてください winkichanwi 20200520
+    // done chung ここの辺の処理は同じなので、共通点を考えて共通化してみてください winkichanwi 20200520
     public int getQuantity() {
-        return quantities[TicketType.ONE_DAY.ordinal()];
-    }
-    public int getTwoDayQuantity() {
-        return quantities[TicketType.TWO_DAY.ordinal()];
-    }
-    public int getFourDayQuantity() {
-        return quantities[TicketType.FOUR_DAY.ordinal()];
+        return getQuantity(TicketType.ONE_DAY);
     }
 
-
-    public Integer getSalesProceeds() {
-        return salesProceeds;
+    public int getQuantity(TicketType ticketType) {
+        return quantities[ticketType.ordinal()];
     }
 }
