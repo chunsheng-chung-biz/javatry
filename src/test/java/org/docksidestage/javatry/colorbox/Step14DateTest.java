@@ -17,7 +17,9 @@ package org.docksidestage.javatry.colorbox;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -58,6 +60,30 @@ public class Step14DateTest extends PlainTestCase {
      * (yellowのカラーボックスに入っているSetの中のスラッシュ区切り (e.g. 2019/04/24) の日付文字列をLocalDateに変換してtoString()したら？)
      */
     public void test_parseDate() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        List answer = (List) colorBoxList.stream()
+                .filter(colorBox -> colorBox.getColor().getColorName().equals("yellow"))
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content != null)
+                .filter(content -> content instanceof Set)
+                .flatMap(content -> ((Set)content).stream())
+                .filter(content -> content != null)
+                .filter(content -> content instanceof String)
+                .map(str -> safeFormatDateAndToString((String)str))
+                .collect(Collectors.toList());
+        log(answer);
+    }
+
+    public String safeFormatDateAndToString(String str) {
+        String ret;
+        try {
+            ret = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy/MM/dd")).toString();
+        } catch (DateTimeParseException e) {
+            ret = null;
+        }
+        return ret;
     }
 
     /**
