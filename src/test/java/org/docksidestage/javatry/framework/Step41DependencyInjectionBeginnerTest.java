@@ -114,6 +114,8 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // your answer? => In UsingDiAccessorAction, the animal and supercarDealer need to be provided with
         // setter methods, while in UsingDiAnnotationAction, it is possible to automate the injection with
         // tools the can process the annotation @SimpleInject.
+        // In this way, the classes we are using can be manged in one single place, and making changes can
+        // be much easier.
         // and your confirmation code here freely
 //        UsingDiAccessorAction diAccessorAction = new UsingDiAccessorAction();
 //        diAccessorAction.callFriend();
