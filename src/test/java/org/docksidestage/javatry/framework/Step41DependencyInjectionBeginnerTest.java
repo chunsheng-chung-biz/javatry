@@ -20,10 +20,7 @@ import org.docksidestage.bizfw.basic.objanimal.Dog;
 import org.docksidestage.bizfw.basic.supercar.SupercarDealer;
 import org.docksidestage.bizfw.di.container.SimpleDiContainer;
 import org.docksidestage.bizfw.di.nondi.*;
-import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
-import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
-import org.docksidestage.bizfw.di.usingdi.UsingDiDelegatingAction;
-import org.docksidestage.bizfw.di.usingdi.UsingDiDelegatingLogic;
+import org.docksidestage.bizfw.di.usingdi.*;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -186,6 +183,20 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_accessor() {
         // execution code here
+        SimpleDiContainer diContainer = SimpleDiContainer.getInstance();
+        diContainer.registerModule(componentMap -> {
+                    componentMap.put(UsingDiAccessorAction.class, new UsingDiAccessorAction());
+                    componentMap.put(Animal.class, new Dog());
+                    componentMap.put(SupercarDealer.class, new SupercarDealer());
+                }
+
+        );
+
+        diContainer.resolveDependency();
+
+        UsingDiWebFrameworkProcess usingDiWebFrameworkProcess =  new UsingDiWebFrameworkProcess();
+        usingDiWebFrameworkProcess.requestAccessorCallFriend();
+
     }
 
     /**
