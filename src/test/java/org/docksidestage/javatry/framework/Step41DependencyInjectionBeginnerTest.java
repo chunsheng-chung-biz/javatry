@@ -22,6 +22,8 @@ import org.docksidestage.bizfw.di.container.SimpleDiContainer;
 import org.docksidestage.bizfw.di.nondi.*;
 import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
 import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiDelegatingAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiDelegatingLogic;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -145,10 +147,34 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     /**
      * What is the difference between UsingDiAnnotationAction and UsingDiDelegatingAction? <br>
      * (UsingDiAnnotationAction と UsingDiDelegatingAction の違いは？)
+     *
      */
     public void test_usingdi_difference_between_Annotation_and_Delegating() {
-        // your answer? => 
+        // your answer? => In UsingDiDelegatingAction, all the objects to be injected are handled by another object,
+        // and all related methods are moved there too.
+        // I think this enables more code recycling as other objects that have similar methods (but not suitable for
+        // inheritance?) can use the helper object as well.
         // and your confirmation code here freely
+        SimpleDiContainer diContainer = SimpleDiContainer.getInstance();
+        diContainer.registerModule(componentMap -> {
+                    componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+                    componentMap.put(Animal.class, new Dog());
+                    componentMap.put(SupercarDealer.class, new SupercarDealer());
+                    componentMap.put(UsingDiDelegatingAction.class, new UsingDiDelegatingAction());
+                    componentMap.put(UsingDiDelegatingLogic.class, new UsingDiDelegatingLogic());
+                }
+
+        );
+
+        diContainer.resolveDependency();
+
+        UsingDiAnnotationAction diAnnotationAction =
+                (UsingDiAnnotationAction) diContainer.getComponent(UsingDiAnnotationAction.class);
+        diAnnotationAction.callFriend();
+
+        UsingDiDelegatingAction diDelegatingAction =
+                (UsingDiDelegatingAction) diContainer.getComponent(UsingDiDelegatingAction.class);
+        diDelegatingAction.callFriend();
     }
 
     // ===================================================================================
