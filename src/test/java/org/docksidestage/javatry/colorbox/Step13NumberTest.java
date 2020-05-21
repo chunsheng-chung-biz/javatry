@@ -15,13 +15,18 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.docksidestage.bizfw.colorbox.ColorBox;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
  * The test of Number with color-box. <br>
  * Show answer by log() for question of javadoc.
  * @author jflute
- * @author your_name_here
+ * @author chunsheng.chung
  */
 public class Step13NumberTest extends PlainTestCase {
 
@@ -33,6 +38,17 @@ public class Step13NumberTest extends PlainTestCase {
      * (カラーボックの中に入っているInteger型で、0から54までの値は何個ある？)
      */
     public void test_countZeroToFiftyFour_IntegerOnly() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        Long answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content != null)
+                .filter(content -> content instanceof Integer)
+                .map(num -> (Integer)num)
+                .filter(content -> (content >= 0 && content <= 54))
+                .count();
+        log(answer);
     }
 
     /**
