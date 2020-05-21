@@ -107,8 +107,8 @@ public class Step13NumberTest extends PlainTestCase {
                 // find lists
                 .filter(content -> content != null)
                 .filter(content -> content instanceof List)
-                // TODO chung Listにはgenericsなので、List<?>でキャストしましょう by winkichanwi 20200521
-                .map(list -> (List) list)
+                // done chung Listにはgenericsなので、List<?>でキャストしましょう by winkichanwi 20200521
+                .map(list -> (List<?>) list)
                 .flatMap(list -> list.stream())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof BigDecimal)

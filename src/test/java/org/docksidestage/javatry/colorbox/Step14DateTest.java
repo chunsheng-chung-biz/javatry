@@ -68,7 +68,7 @@ public class Step14DateTest extends PlainTestCase {
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof Set)
-                .flatMap(content -> ((Set)content).stream())
+                .flatMap(content -> ((Set<?>)content).stream())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof String)
                 .map(str -> safeFormatDateAndToString((String)str))
