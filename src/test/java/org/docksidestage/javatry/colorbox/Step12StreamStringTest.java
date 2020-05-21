@@ -166,7 +166,7 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_startsWith_findFirstWord() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Optional<String> answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .filter(
                         colorBox -> colorBox.getSpaceList().stream()
                                 .map(boxSpace -> boxSpace.getContent())
@@ -175,7 +175,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                                 .anyMatch(content -> ((String) content).startsWith("Water"))
                 )
                 .map(colorBox -> colorBox.getColor().getColorName())
-                .findAny();
+                .collect(Collectors.toList());
         log(answer);
     }
 
@@ -186,7 +186,7 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_endsWith_findLastWord() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Optional<String> answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .filter(
                         colorBox -> colorBox.getSpaceList().stream()
                                 .map(boxSpace -> boxSpace.getContent())
@@ -195,7 +195,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                                 .anyMatch(content -> ((String) content).endsWith("front"))
                 )
                 .map(colorBox -> colorBox.getColor().getColorName())
-                .findAny();
+                .collect(Collectors.toList());
         log(answer);
     }
 
@@ -209,16 +209,15 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_indexOf_findIndex() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Integer answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(content -> (String)content)
                 .filter(content -> content.endsWith("front"))
-                .findFirst()
-                .orElse("")
-                .indexOf("front");
+                .map(str -> str.indexOf("front"))
+                .collect(Collectors.toList());
         log(answer);
     }
 
@@ -229,7 +228,7 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_lastIndexOf_findIndex() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Integer answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
@@ -240,9 +239,8 @@ public class Step12StreamStringTest extends PlainTestCase {
                                 ch -> ch == 'ど'
                         ).count() >= 2
                 )
-                .findFirst()
-                .orElse("")
-                .lastIndexOf('ど');
+                .map(str -> str.lastIndexOf('ど'))
+                .collect(Collectors.toList());
         log(answer);
     }
 
@@ -256,16 +254,15 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_substring_findFirstChar() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        char answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(content -> (String)content)
                 .filter(content -> content.endsWith("front"))
-                .findFirst()
-                .orElse(" ")
-                .charAt(0);
+                .map(str -> str.charAt(0))
+                .collect(Collectors.toList());
         log(answer);
     }
 
@@ -276,16 +273,15 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_substring_findLastChar() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        char answer = colorBoxList.stream()
+        List answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass() == String.class)
                 .map(content -> (String)content)
                 .filter(content -> content.startsWith("Water"))
-                .findFirst()
                 .map(str -> str.charAt(str.length()-1))
-                .orElse(' ');
+                .collect(Collectors.toList());
 
         log(answer);
     }
