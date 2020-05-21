@@ -15,8 +15,10 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.color.BoxColor;
@@ -100,6 +102,21 @@ public class Step13NumberTest extends PlainTestCase {
      * (カラーボックスの中に入ってる List の中の BigDecimal を全て足し合わせると？)
      */
     public void test_sumBigDecimalInList() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        BigDecimal answer = (BigDecimal)colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                // find lists
+                .filter(content -> content != null)
+                .filter(content -> content instanceof List)
+                .map(list -> (List)list)
+                .flatMap(list -> list.stream())
+                .filter(content -> content != null)
+                .filter(content -> content instanceof BigDecimal)
+                .map(content -> (BigDecimal) content)
+                .reduce(BigDecimal.ZERO, (num1, num2) -> ((BigDecimal)num1).add((BigDecimal)num2));
+        log(answer);
     }
 
     // ===================================================================================
