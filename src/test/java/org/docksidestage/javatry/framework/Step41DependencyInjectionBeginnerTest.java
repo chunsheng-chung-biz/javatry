@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.framework;
 
+import org.docksidestage.bizfw.di.nondi.*;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -36,8 +37,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // What is Dependency Injection?
         // - - - - - (your answer?)
-        //
-        //
+        // Long story short, "Dependency Injection" means giving an object its instance variables,
+        // instead of generating its own one in the implementation.
+        // This way, The object can be decoupled to the inner object and become easier to test.
         //
         // _/_/_/_/_/_/_/_/_/_/
     }
@@ -50,8 +52,32 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectFirstAction と NonDiDirectSecondAction の違いは？)
      */
     public void test_nondi_difference_between_first_and_second() {
-        // your answer? => 
+        // your answer? => In callFriend() and wakeupMe() the dogs have different types and behaviors
+        // Because when TooLazyDog barks it will also make its friend cat bark, because cat cannot
+        // bark 3 times due to HP limit, there will be an exception.
+        // And in goToOffice() and sendGift(), a log is added in NonDiDirectSecondAction.
+        // Both should have the bug where the a kawaii face comes out from SupercarSteeringWheelComponentDB \(^_^)/
+        // As DI is not applied, it is very confusing to trace and test these code...
         // and your confirmation code here freely
+
+        NonDiDirectFirstAction first = new NonDiDirectFirstAction();
+        NonDiDirectSecondAction second = new NonDiDirectSecondAction();
+
+        first.callFriend();
+        log("--------");
+        second.callFriend();
+        log("/////////////////////");
+        first.wakeupMe();
+        log("--------");
+//        second.wakeupMe();
+        log("/////////////////////");
+//        first.goToOffice();
+        log("--------");
+        second.goToOffice();
+        log("/////////////////////");
+        first.sendGift();
+        log("--------");
+        second.sendGift();
     }
 
     /**
