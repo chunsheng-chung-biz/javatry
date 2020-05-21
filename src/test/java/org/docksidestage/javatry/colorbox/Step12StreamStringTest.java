@@ -137,7 +137,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass()==String.class)
-                .map(object -> (Integer)((String) object).length())
+                .map(object -> ((String) object).length())
                 .reduce(Integer::sum);
         log(answer);
     }
