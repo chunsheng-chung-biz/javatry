@@ -18,7 +18,6 @@ package org.docksidestage.javatry.colorbox;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.color.BoxColor;
