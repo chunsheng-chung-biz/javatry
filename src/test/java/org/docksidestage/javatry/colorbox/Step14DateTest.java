@@ -15,6 +15,13 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.docksidestage.bizfw.colorbox.ColorBox;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -33,6 +40,17 @@ public class Step14DateTest extends PlainTestCase {
      * (カラーボックスに入っている日付をプラス記号区切り (e.g. 2019+04+24) のフォーマットしたら？)
      */
     public void test_formatDate() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        List answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(content -> content != null)
+                .filter(content -> content instanceof LocalDate)
+                .map(date -> (LocalDate)date)
+                .map(date -> date.format(DateTimeFormatter.ofPattern("yyyy+MM+dd")))
+                .collect(Collectors.toList());
+        log(answer);
     }
 
     /**
