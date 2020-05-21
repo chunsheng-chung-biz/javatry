@@ -47,7 +47,7 @@ public class Step13NumberTest extends PlainTestCase {
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof Integer)
-                .map(num -> (Integer)num)
+                .map(num -> (Integer) num)
                 .filter(content -> (content >= 0 && content <= 54))
                 .count();
         log(answer);
@@ -66,7 +66,7 @@ public class Step13NumberTest extends PlainTestCase {
                 .filter(content -> content != null)
                 .filter(content -> content instanceof Number)
                 // Using double to prevent overflow/truncation as much as possible
-                .map(num -> ((Number)num).doubleValue())
+                .map(num -> ((Number) num).doubleValue())
                 .filter(content -> (content >= 0 && content <= 54))
                 .count();
         log(answer);
@@ -79,15 +79,13 @@ public class Step13NumberTest extends PlainTestCase {
     public void test_findColorBigWidthHasInteger() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        Comparator<ColorBox> compareByWidth =
-                (box1, box2) -> box1.getSize().getWidth() - box2.getSize().getWidth();
+        Comparator<ColorBox> compareByWidth = (box1, box2) -> box1.getSize().getWidth() - box2.getSize().getWidth();
 
         BoxColor answer = colorBoxList.stream()
-                .filter(
-                        colorBox -> colorBox.getSpaceList().stream()
-                                .map(boxSpace -> boxSpace.getContent())
-                                .anyMatch(content -> content instanceof Integer)
-                )
+                .filter(colorBox -> colorBox.getSpaceList()
+                        .stream()
+                        .map(boxSpace -> boxSpace.getContent())
+                        .anyMatch(content -> content instanceof Integer))
                 .max(compareByWidth)
                 .map(colorBox -> colorBox.getColor())
                 .orElse(null);
@@ -103,18 +101,19 @@ public class Step13NumberTest extends PlainTestCase {
     public void test_sumBigDecimalInList() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        BigDecimal answer = (BigDecimal)colorBoxList.stream()
+        BigDecimal answer = (BigDecimal) colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 // find lists
                 .filter(content -> content != null)
                 .filter(content -> content instanceof List)
-                .map(list -> (List)list)
+                // TODO chung Listにはgenericsなので、List<?>でキャストしましょう by winkichanwi 20200521
+                .map(list -> (List) list)
                 .flatMap(list -> list.stream())
                 .filter(content -> content != null)
                 .filter(content -> content instanceof BigDecimal)
                 .map(content -> (BigDecimal) content)
-                .reduce(BigDecimal.ZERO, (num1, num2) -> ((BigDecimal)num1).add((BigDecimal)num2));
+                .reduce(BigDecimal.ZERO, (num1, num2) -> ((BigDecimal) num1).add((BigDecimal) num2));
         log(answer);
     }
 
