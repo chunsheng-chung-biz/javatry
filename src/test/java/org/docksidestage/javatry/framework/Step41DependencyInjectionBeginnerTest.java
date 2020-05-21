@@ -15,6 +15,10 @@
  */
 package org.docksidestage.javatry.framework;
 
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.supercar.SupercarDealer;
+import org.docksidestage.bizfw.di.container.SimpleDiContainer;
 import org.docksidestage.bizfw.di.nondi.*;
 import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
 import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
@@ -117,11 +121,25 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // In this way, the classes we are using can be manged in one single place, and making changes can
         // be much easier.
         // and your confirmation code here freely
-//        UsingDiAccessorAction diAccessorAction = new UsingDiAccessorAction();
-//        diAccessorAction.callFriend();
+        UsingDiAccessorAction diAccessorAction = new UsingDiAccessorAction();
+        diAccessorAction.setAnimal(new Dog());
+        diAccessorAction.setSupercarDealer(new SupercarDealer());
+        diAccessorAction.callFriend();
 
-//        UsingDiAnnotationAction diAnnotationAction = new UsingDiAnnotationAction();
-//        diAnnotationAction.callFriend();
+        SimpleDiContainer diContainer = SimpleDiContainer.getInstance();
+        diContainer.registerModule(componentMap -> {
+            componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+            componentMap.put(Animal.class, new Dog());
+            componentMap.put(SupercarDealer.class, new SupercarDealer());
+                }
+
+        );
+
+        diContainer.resolveDependency();
+
+        UsingDiAnnotationAction diAnnotationAction =
+                (UsingDiAnnotationAction) diContainer.getComponent(UsingDiAnnotationAction.class);
+        diAnnotationAction.callFriend();
     }
 
     /**
