@@ -60,24 +60,24 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         // As DI is not applied, it is very confusing to trace and test these code...
         // and your confirmation code here freely
 
-        NonDiDirectFirstAction first = new NonDiDirectFirstAction();
-        NonDiDirectSecondAction second = new NonDiDirectSecondAction();
-
-        first.callFriend();
-        log("--------");
-        second.callFriend();
-        log("/////////////////////");
-        first.wakeupMe();
-        log("--------");
+//        NonDiDirectFirstAction first = new NonDiDirectFirstAction();
+//        NonDiDirectSecondAction second = new NonDiDirectSecondAction();
+//
+//        first.callFriend();
+//        log("--------");
+//        second.callFriend();
+//        log("/////////////////////");
+//        first.wakeupMe();
+//        log("--------");
 //        second.wakeupMe();
-        log("/////////////////////");
+//        log("/////////////////////");
 //        first.goToOffice();
-        log("--------");
-        second.goToOffice();
-        log("/////////////////////");
-        first.sendGift();
-        log("--------");
-        second.sendGift();
+//        log("--------");
+//        second.goToOffice();
+//        log("/////////////////////");
+//        first.sendGift();
+//        log("--------");
+//        second.sendGift();
     }
 
     /**
