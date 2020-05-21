@@ -60,6 +60,7 @@ public class Step12StreamStringTest extends PlainTestCase {
         /*
          done chung こちらの右辺にカーソルを合わせて option + enter を実行しましょう by subaru (2020/05/20)
          Replace ... が表示されるのでこちらを実行すると良いです。
+         TODO chung まだ最適化してないとみえますが、わからないなら聞いてください。午前中の解説でもComparatorの便利メソッドあると話しましたので。 by winkichanwi 20200521
         */
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
 
@@ -112,6 +113,7 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findSecondMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
+        // TODO chung ここの最適化もしましょう by winkichanwi 20200521
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
 
         Optional<String> answer = colorBoxList.stream()
@@ -137,6 +139,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(content -> content != null)
                 .filter(content -> content.getClass()==String.class)
+                // TODO chung [comment] mapToIntでsumができる by winkichanwi 20200521
                 .map(object -> ((String) object).length())
                 .reduce(Integer::sum);
         log(answer);
@@ -147,6 +150,7 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中で、色の名前が一番長いものは？)
      */
     public void test_length_findMaxColorSize() {
+        // TODO chung comporatorの最適化 by winkichanwi 20200521
         Comparator<String> compareByLength = (str1, str2) -> str1.length() - str2.length();
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
@@ -172,6 +176,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                                 .map(boxSpace -> boxSpace.getContent())
                                 .filter(content -> content != null)
                                 .filter(content -> content.getClass() == String.class)
+                                // [comment] うまいですね by winkichanwi 2020521
                                 .anyMatch(content -> ((String) content).startsWith("Water"))
                 )
                 .map(colorBox -> colorBox.getColor().getColorName())
@@ -235,6 +240,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(content -> content.getClass() == String.class)
                 .map(content -> (String)content)
                 .filter(
+                        // TODO chung splitを使うのやり方もやってみてください by winkichanwi 20200521
                         content -> content.chars().filter(
                                 ch -> ch == 'ど'
                         ).count() >= 2
@@ -304,10 +310,12 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .map(content -> (String)content)
                 .filter(content -> content.contains("o"))
                 .map(content -> content.replace("o", ""))
+                // TODO chung [comment] ここmapToIntするなら sumができる by winkichanwi (2020521)
                 .map(content -> content.length())
                 .reduce(Integer::sum)
                 .orElse(-1);
 
+        // TODO chung -1が出力しちゃう場合はどいう意味？ by winkichanwi 20200521
         log(answer);
     }
 
@@ -350,6 +358,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .peek(YourPrivateRoom.DevilBox::wakeUp)
                 .peek(YourPrivateRoom.DevilBox::allowMe)
                 .peek(YourPrivateRoom.DevilBox::open)
+                // TODO chung [comment] ここmapToIntするなら sumができる by winkichanwi (2020521)
                 .map(box -> safeGetDevilString(box).length())
                 .reduce(Integer::sum)
                 .orElse(-1);
