@@ -15,10 +15,11 @@
  */
 package org.docksidestage.javatry.colorbox;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
+import org.docksidestage.bizfw.colorbox.color.BoxColor;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
 import org.docksidestage.unit.PlainTestCase;
 
@@ -75,6 +76,23 @@ public class Step13NumberTest extends PlainTestCase {
      * (カラーボックスの中で、Integer型の Content を持っていてBoxSizeの幅が一番大きいカラーボックスの色は？)
      */
     public void test_findColorBigWidthHasInteger() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        Comparator<ColorBox> compareByWidth =
+                (box1, box2) -> box1.getSize().getWidth() - box2.getSize().getWidth();
+
+        BoxColor answer = colorBoxList.stream()
+                .filter(
+                        colorBox -> colorBox.getSpaceList().stream()
+                                .map(boxSpace -> boxSpace.getContent())
+                                .anyMatch(content -> content instanceof Integer)
+                )
+                .max(compareByWidth)
+                .map(colorBox -> colorBox.getColor())
+                .orElse(null);
+
+        log(answer);
+
     }
 
     /**
