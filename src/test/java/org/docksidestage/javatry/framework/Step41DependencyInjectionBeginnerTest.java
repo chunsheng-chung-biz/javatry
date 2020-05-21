@@ -269,7 +269,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (DIコンテナとは？)
      */
     public void test_whatis_DIContainer() {
-        // your answer? => 
+        // your answer? => DI container is a helper that manages the instances we are using in a system
+        // that implements DI. The container, in this exercise, SimpleDIContainer, accepts our definition of
+        // instances that need to be injected, and handles different injection actions.
         // and your confirmation code here freely
     }
 
