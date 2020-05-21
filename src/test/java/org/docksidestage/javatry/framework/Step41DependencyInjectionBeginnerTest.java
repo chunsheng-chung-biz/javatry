@@ -207,6 +207,21 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_usingdi_UsingDiWebFrameworkProcess_callfriend_annotation_delegating() {
         // execution code here
+        SimpleDiContainer diContainer = SimpleDiContainer.getInstance();
+        diContainer.registerModule(componentMap -> {
+                    componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+                    componentMap.put(UsingDiDelegatingAction.class, new UsingDiDelegatingAction());
+                    componentMap.put(UsingDiDelegatingLogic.class, new UsingDiDelegatingLogic());
+                    componentMap.put(Animal.class, new Dog());
+                    componentMap.put(SupercarDealer.class, new SupercarDealer());
+                }
+        );
+
+        diContainer.resolveDependency();
+
+        UsingDiWebFrameworkProcess usingDiWebFrameworkProcess =  new UsingDiWebFrameworkProcess();
+        usingDiWebFrameworkProcess.requestAnnotationCallFriend();
+        usingDiWebFrameworkProcess.requestDelegatingCallFriend();
     }
 
     /**
