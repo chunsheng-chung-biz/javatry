@@ -16,6 +16,8 @@
 package org.docksidestage.javatry.framework;
 
 import org.docksidestage.bizfw.di.nondi.*;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -109,8 +111,15 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
-        // your answer? => 
+        // your answer? => In UsingDiAccessorAction, the animal and supercarDealer need to be provided with
+        // setter methods, while in UsingDiAnnotationAction, it is possible to automate the injection with
+        // tools the can process the annotation @SimpleInject.
         // and your confirmation code here freely
+//        UsingDiAccessorAction diAccessorAction = new UsingDiAccessorAction();
+//        diAccessorAction.callFriend();
+
+//        UsingDiAnnotationAction diAnnotationAction = new UsingDiAnnotationAction();
+//        diAnnotationAction.callFriend();
     }
 
     /**
