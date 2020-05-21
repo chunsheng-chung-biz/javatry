@@ -115,9 +115,9 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
-        // your answer? => In UsingDiAccessorAction, the animal and supercarDealer need to be provided with
-        // setter methods, while in UsingDiAnnotationAction, it is possible to automate the injection with
-        // tools the can process the annotation @SimpleInject.
+        // your answer? => In UsingDiAccessorAction, the animal and supercarDealer are provided with
+        // setter methods, and in UsingDiAnnotationAction, they are injected with annotation.
+        // CORRECT: Both approaches can be automated with tools.
         // In this way, the classes we are using can be manged in one single place, and making changes can
         // be much easier.
         // and your confirmation code here freely
