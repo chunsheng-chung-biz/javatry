@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author jflute
+ * @author chunsheng.chung
  */
 public class UsingDiAnnotationAction {
 
@@ -60,5 +61,12 @@ public class UsingDiAnnotationAction {
     public void sendGift() {
         Supercar supercar = supercarDealer.orderSupercar("I think...steering wheel is useful on land");
         logger.debug("Send {} to my friend", supercar);
+    }
+
+    /**
+     * For Step41 - test_usingdi_whatis_animal
+     */
+    public void checkAnimal() {
+        logger.debug(animal.getClass().toString());
     }
 }

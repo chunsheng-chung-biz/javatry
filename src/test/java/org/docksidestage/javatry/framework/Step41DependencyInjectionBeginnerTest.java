@@ -16,6 +16,7 @@
 package org.docksidestage.javatry.framework;
 
 import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
 import org.docksidestage.bizfw.basic.supercar.SupercarDealer;
 import org.docksidestage.bizfw.di.container.SimpleDiContainer;
@@ -229,8 +230,35 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAnnotationAction のインスタンス変数 "animal" の実体クラスは？ (UsingDiModuleを登録した時))
      */
     public void test_usingdi_whatis_animal() {
-        // your answer? => 
+        // your answer? => It will be the same class as the instance I bind the animal variable with.
         // and your confirmation code here freely
+        SimpleDiContainer diContainer = SimpleDiContainer.getInstance();
+
+        // Test Dog
+        diContainer.registerModule(componentMap -> {
+                    componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+                    componentMap.put(Animal.class, new Dog());
+                    componentMap.put(SupercarDealer.class, new SupercarDealer());
+                }
+        );
+
+        diContainer.resolveDependency();
+
+        UsingDiAnnotationAction usingDiAnnotationAction = (UsingDiAnnotationAction)diContainer.getComponent(UsingDiAnnotationAction.class);
+        usingDiAnnotationAction.checkAnimal();
+
+        // Test Cat
+        diContainer.registerModule(componentMap -> {
+                    componentMap.put(UsingDiAnnotationAction.class, new UsingDiAnnotationAction());
+                    componentMap.put(Animal.class, new Cat());
+                    componentMap.put(SupercarDealer.class, new SupercarDealer());
+                }
+        );
+
+        diContainer.resolveDependency();
+
+        usingDiAnnotationAction = (UsingDiAnnotationAction)diContainer.getComponent(UsingDiAnnotationAction.class);
+        usingDiAnnotationAction.checkAnimal();
     }
 
     // ===================================================================================
