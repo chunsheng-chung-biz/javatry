@@ -21,7 +21,7 @@ import org.docksidestage.unit.PlainTestCase;
  * The test of Dependency Injection (DI) as beginner level. <br>
  * Show answer by log() or write answer on comment for question of javadoc.
  * @author jflute
- * @author your_name_here
+ * @author chunsheng.chung
  */
 public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
 
