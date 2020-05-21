@@ -85,8 +85,11 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectSecondAction と NonDiFactoryMethodAction の違いは？)
      */
     public void test_nondi_difference_between_second_and_FactoryMethod() {
-        // your answer? => 
+        // your answer? => Factory method integrates the process of creating TooLazyDog and pleasing it,
+        // and overriding makeSupercar, so the same procedures don't need to be repeated.
         // and your confirmation code here freely
+        NonDiFactoryMethodAction factoryMethodAction = new NonDiFactoryMethodAction();
+//        factoryMethodAction.goToOffice();
     }
 
     /**
